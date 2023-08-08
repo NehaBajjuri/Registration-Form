@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const age = currentDate.getFullYear() - dobDate.getFullYear();
 
         if (age < 18 || age > 55) {
-            alert('Date of birth must be between ages 18 and 55.');
+            alert('Date of birth must be between ages 18 and 55!!');
             return;
         }
 
