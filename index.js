@@ -2,9 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const registrationForm = document.getElementById('registrationForm');
     const userTableBody = document.querySelector('#userTable tbody');
 
-    // Load existing entries from localStorage
-    const savedEntries = JSON.parse(localStorage.getItem('userEntries')) || [];
-    savedEntries.forEach(entry => addUserToTable(entry));
+    // Load existing entries from localStorage on page load
+    loadEntriesFromLocalStorage();
 
     registrationForm.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -36,7 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
         registrationForm.reset();
     });
 
-    // Function to add user entry to the table
+    function loadEntriesFromLocalStorage() {
+        const savedEntries = JSON.parse(localStorage.getItem('userEntries')) || [];
+        savedEntries.forEach(entry => addUserToTable(entry));
+    }
+
     function addUserToTable(user) {
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
@@ -49,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
         userTableBody.appendChild(newRow);
     }
 
-    // Function to save user entry to localStorage
     function saveUserEntry(user) {
         const savedEntries = JSON.parse(localStorage.getItem('userEntries')) || [];
         savedEntries.push(user);
